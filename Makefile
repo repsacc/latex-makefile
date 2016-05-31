@@ -1,13 +1,15 @@
 PROJECT=report
 TEX=pdflatex
+LATEXFLAGS+=	-file-line-error -halt-on-error -interaction nonstopmode
 BIBTEX=bibtex
-BUILDTEX=$(TEX) $(PROJECT).tex
+BUILDTEX=$(TEX) $(LATEXFLAGS) $(PROJECT).tex
 
-all:
+all:	clean
 	$(BUILDTEX)
 	$(BIBTEX) $(PROJECT)
 	$(BUILDTEX)
 	$(BUILDTEX)
+
 clean-all:
 	rm -f *.dvi *.log *.bak *.aux *.bbl *.blg *.idx *.ps *.eps *.pdf *.toc *.out *~
 
